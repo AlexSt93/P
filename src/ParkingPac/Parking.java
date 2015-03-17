@@ -1,8 +1,5 @@
 package ParkingPac;
 
-
-
-
 import ServerPac.Server;
 import java.io.Serializable;
 import java.sql.ResultSet;
@@ -163,6 +160,7 @@ public class Parking implements Serializable {
                             freePlaces.clear();
                             break;
                         } else {
+
                             freePlaces.add(p);
                             sizeFreePlaces += placeSize;
                         }
@@ -209,6 +207,10 @@ public class Parking implements Serializable {
             }
 
             if ((space + carSize) <= 24 && place.getId() == 0) {
+                if (freePlaces.size() > 0) {
+                    placeList.removeAll(freePlaces);
+                    freePlaces.clear();
+                }
                 Place newPlace = new Place(++instance.maxIdPlace, 1, areaName, 1, carSize, posForNewPlace, 1);
                 query[0] = "insert into place values (" + newPlace.getId() + ","
                         + "1,"

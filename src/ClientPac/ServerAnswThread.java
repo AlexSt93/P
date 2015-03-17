@@ -9,6 +9,7 @@ import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Application;
+import javafx.application.Platform;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -22,46 +23,53 @@ import javafx.application.Application;
 public class ServerAnswThread extends Thread {
 
     private Socket socket;
+    private ViewController vContrl;
+    private ObjectInputStream in;
 
-    public ServerAnswThread(Socket socket) {
+    public ServerAnswThread(Socket socket, ViewController vContrl) throws IOException {
         this.socket = socket;
+        this.vContrl = vContrl;
+        this.in = new ObjectInputStream(Client.getSocket().getInputStream());
         this.start();
     }
 
     @Override
     public void run() {
-        ObjectInputStream in = Client.getIn();
-
         try {
             while (true) {
                 Object obj = in.readObject();
                 if (obj != null) {
                     if (obj instanceof Parking) {
                         Parking parking = (Parking) obj;
-                        Client.setParking(parking);
-                        //Application.launch(View.class);
-//                        if (Client.getView()== null) {
-//                            Client.setView(GUI.View.getInstance());
-                            //Client.getView().launch(View.class);
-                            //Application.launch(View.class);
-                            //Client.setUserThread(new UserThread());
-                        //}
+                        vContrl.setParking(parking);
+                        if (vContrl.getEntryPoint() != null) {
+                            vContrl.showParking();
+
+                        }
+
                     } else if (obj instanceof Place) {
-                        Place place = (Place) obj;
-                        System.out.println(place.toString());
+                        final Place place = (Place) obj;
+                        vContrl.showParking();
+                        Platform.runLater(new Runnable() {
+                            @Override
+                            public void run() {
+                                vContrl.getPlaceScreen().setText(place.toString());
+                                System.out.println(place.toString());
+                            }
+                        });
                     }
                 }
             }
-        } catch (IOException ex) {
+            }catch (IOException ex) {
             ex.printStackTrace();
-        } catch (ClassNotFoundException ex) {
+        }catch (ClassNotFoundException ex) {
             ex.printStackTrace();
-        } finally {
+        }finally {
             try {
                 in.close();
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
         }
+        }
     }
-}

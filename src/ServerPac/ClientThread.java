@@ -72,8 +72,8 @@ public class ClientThread extends Thread {
                     if (obj instanceof ParkingCommand) {
                         ParkingCommand pc = (ParkingCommand) obj;
                         answPlace = pc.execute();
-                        parkingChanged(Server.getUserList().getUsers());
                         out.writeObject(answPlace);
+                        parkingChanged(Server.getUserList().getUsers());
                         out.flush();
                         System.out.println("Answer sending");
 
@@ -85,14 +85,14 @@ public class ClientThread extends Thread {
             ex.printStackTrace();
         } catch (ClassNotFoundException ex) {
             ex.printStackTrace();
-        } finally {
-            try {
-                //socket.close();
-                in.close();
-                out.close();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
+//        } finally {
+//            try {
+//                //socket.close();
+//                //in.close();
+//                //out.close();
+////            } catch (IOException ex) {
+////                ex.printStackTrace();
+////            }
 
         }
     }

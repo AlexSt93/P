@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.shape.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<SplitPane dividerPositions="0.8091324200913242" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="734.0" prefWidth="1097.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ViewController">
+  <items>
+    <AnchorPane fx:id="viewPanel" minHeight="0.0" minWidth="0.0" prefHeight="732.0" prefWidth="755.0">
+         <children>
+            <Rectangle fx:id="AreaA" arcHeight="5.0" arcWidth="5.0" fill="#d2e9ff" height="122.0" layoutX="14.0" layoutY="91.0" stroke="BLACK" strokeType="INSIDE" width="638.0" />
+            <Rectangle fx:id="AreaB" arcHeight="5.0" arcWidth="5.0" fill="#dfffb1" height="122.0" layoutX="14.0" layoutY="289.0" stroke="BLACK" strokeType="INSIDE" width="638.0" />
+            <Rectangle fx:id="AreaC" arcHeight="5.0" arcWidth="5.0" fill="#ffba92" height="122.0" layoutX="14.0" layoutY="487.0" stroke="BLACK" strokeType="INSIDE" width="638.0" />
+            <Label layoutX="671.0" layoutY="125.0" prefHeight="44.0" prefWidth="47.0" text="A" textAlignment="JUSTIFY">
+               <font>
+                  <Font size="38.0" />
+               </font>
+            </Label>
+            <Label layoutX="671.0" layoutY="323.0" prefHeight="44.0" prefWidth="47.0" text="B" textAlignment="JUSTIFY">
+               <font>
+                  <Font size="38.0" />
+               </font>
+            </Label>
+            <Label layoutX="671.0" layoutY="521.0" prefHeight="44.0" prefWidth="47.0" text="C" textAlignment="JUSTIFY">
+               <font>
+                  <Font size="38.0" />
+               </font>
+            </Label>
+            <Rectangle fx:id="topPoint" arcHeight="5.0" arcWidth="5.0" fill="#ff3c1f" height="14.0" layoutX="671.0" layoutY="7.0" onMouseClicked="#selectEntryPoint" stroke="BLACK" strokeType="INSIDE" width="206.0" />
+            <Rectangle fx:id="botPoint" arcHeight="5.0" arcWidth="5.0" fill="#ff3c1f" height="14.0" layoutX="671.0" layoutY="711.0" onMouseClicked="#selectEntryPoint" stroke="BLACK" strokeType="INSIDE" width="206.0" />
+         </children></AnchorPane>
+    <AnchorPane fx:id="controlPanel" minHeight="0.0" minWidth="0.0" prefHeight="732.0" prefWidth="283.0">
+         <children>
+            <Button layoutX="13.0" layoutY="22.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="86.0" text="Легковая" />
+            <Button layoutX="107.0" layoutY="22.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="86.0" text="Грузовая" />
+            <Label layoutX="67.0" layoutY="114.0" prefHeight="55.0" prefWidth="73.0" text="C1" textAlignment="CENTER">
+               
+               <font>
+                  <Font size="35.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+  </items>
+</SplitPane>
